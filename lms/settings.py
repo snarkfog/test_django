@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'webargs',
+    'faker',
 
-    'students'
+    'students',
+    'groups',
+    'teachers',
 ]
 
 MIDDLEWARE = [
