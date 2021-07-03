@@ -1,8 +1,10 @@
 # from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from webargs.djangoparser import use_kwargs, use_args
 from webargs import fields, validate
 from faker import Faker
+from students.forms import StudentCreateForm
 from students.utils import format_list, format_records
 from students.models import Student
 
@@ -44,7 +46,55 @@ def get_students(request, args):
     students = Student.objects.all()
 
     for param_name, param_value in args.items():
-        students = students.filter(**{param_name: param_value})
+        if param_value:
+            students = students.filter(**{param_name: param_value})
+
+    html_form = """
+        <form method="get">
+       
+        <label for="fname">First name:</label>
+        <input type="text" name="first_name"><br><br>
+        
+        <label for="lname">Last name:</label>
+        <input type="text" name="last_name"><br><br>
+        
+        <label>Age:</label>
+        <input type="number" name="age"><br><br>
+        
+        <input type="submit" value="Submit">
+        
+       </form>
+    """
 
     records = format_records(students)
-    return HttpResponse(records)
+
+    response = html_form + records
+
+    return HttpResponse(response)
+
+
+@csrf_exempt
+def create_student(request):
+
+    if request.method == 'GET':
+
+        form = StudentCreateForm()
+
+    elif request.method == 'POST':
+
+        form = StudentCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/students')
+
+    html_form = f"""
+                <form method="post">
+                {form.as_p()}
+                <input type="submit" value="Submit">
+                </form>
+                """
+
+    response = html_form
+
+    return HttpResponse(response)
