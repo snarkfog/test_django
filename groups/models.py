@@ -1,7 +1,9 @@
-from django.db import models
-from faker import Faker
-import random
 import datetime
+import random
+
+from django.db import models
+
+from faker import Faker
 
 
 # Create your models here.
