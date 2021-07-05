@@ -1,12 +1,15 @@
-# from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render # noqa
 from django.views.decorators.csrf import csrf_exempt
-from webargs.djangoparser import use_kwargs, use_args
-from webargs import fields, validate
+
 from faker import Faker
+
 from students.forms import StudentCreateForm
-from students.utils import format_list, format_records
 from students.models import Student
+from students.utils import format_list, format_records
+
+from webargs import fields, validate
+from webargs.djangoparser import use_args, use_kwargs
 
 
 # Create your views here.
@@ -51,18 +54,18 @@ def get_students(request, args):
 
     html_form = """
         <form method="get">
-       
+
         <label for="fname">First name:</label>
         <input type="text" name="first_name"><br><br>
-        
+
         <label for="lname">Last name:</label>
         <input type="text" name="last_name"><br><br>
-        
+
         <label>Age:</label>
         <input type="number" name="age"><br><br>
-        
+
         <input type="submit" value="Submit">
-        
+
        </form>
     """
 

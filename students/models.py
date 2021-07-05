@@ -1,5 +1,7 @@
-from django.db import models
 import datetime
+
+from django.db import models
+
 from faker import Faker
 
 
@@ -7,9 +9,9 @@ from faker import Faker
 class Student(models.Model):
     first_name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=80, null=False)
-    age = models.IntegerField(default=42)
+    age = models.IntegerField(default=42, null=False)
     email = models.EmailField(max_length=120, null=True)
-    birthday = models.DateField(default=datetime.date.today)
+    birthday = models.DateField(default=datetime.date.today, null=True)
 
     def __str__(self):
         return f'{self.full_name()}, {self.birthday}'

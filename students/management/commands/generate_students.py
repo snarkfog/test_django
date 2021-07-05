@@ -1,10 +1,11 @@
 from django.core.management.base import BaseCommand
+
 from students.models import Student
 
 
 # Homework 8
 class Command(BaseCommand):
-    help = 'Generate students user command.'
+    help = 'Generate students user command.' # noqa
 
     def add_arguments(self, parser):
         parser.add_argument('count', type=int, help='Number of generated students')
