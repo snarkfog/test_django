@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from faker import Faker
 
-from students.forms import StudentCreateForm
+from students.forms import StudentCreateForm, StudentUpdateForm
 from students.models import Student
 from students.utils import format_list, format_records
 
@@ -64,7 +64,7 @@ def get_students(request, args):
         <label>Age:</label>
         <input type="number" name="age"><br><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Search">
 
        </form>
     """
@@ -85,7 +85,7 @@ def create_student(request):
 
     elif request.method == 'POST':
 
-        form = StudentCreateForm(request.POST)
+        form = StudentCreateForm(data=request.POST)
 
         if form.is_valid():
             form.save()
@@ -94,7 +94,39 @@ def create_student(request):
     html_form = f"""
                 <form method="post">
                 {form.as_p()}
-                <input type="submit" value="Submit">
+                <input type="submit" value="Create">
+                </form>
+                """
+
+    response = html_form
+
+    return HttpResponse(response)
+
+
+@csrf_exempt
+def update_student(request, id):
+
+    student = Student.objects.get(id=id)
+
+    if request.method == 'GET':
+
+        form = StudentUpdateForm(instance=student)
+
+    elif request.method == 'POST':
+
+        form = StudentUpdateForm(
+            instance=student,
+            data=request.POST
+        )
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/students')
+
+    html_form = f"""
+                <form method="post">
+                {form.as_p()}
+                <input type="submit" value="Save">
                 </form>
                 """
 
