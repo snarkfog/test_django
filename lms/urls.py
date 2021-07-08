@@ -19,11 +19,11 @@ from django.contrib import admin
 from django.conf import settings # noqa
 from django.urls import include, path
 
-from groups.views import create_group, get_groups
+from groups.views import create_group, get_groups, update_group
 
 from students.views import create_student, generate_students, get_students, hello, update_student
 
-from teachers.views import create_teacher, get_teachers
+from teachers.views import create_teacher, get_teachers, update_teacher
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,7 +34,9 @@ urlpatterns = [
     path('students/update/<int:id>', update_student),
     path('teachers/', get_teachers),
     path('teachers/create/', create_teacher),
+    path('teachers/update/<int:id>', update_teacher),
     path('groups/', get_groups),
     path('groups/create/', create_group),
+    path('groups/update/<int:id>', update_group),
     path('__debug__/', include(debug_toolbar.urls)),
 ]

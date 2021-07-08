@@ -104,7 +104,7 @@ def create_student(request):
 
 
 @csrf_exempt
-def update_student(request, id):
+def update_student(request, id): # noqa
 
     student = Student.objects.get(id=id)
 
