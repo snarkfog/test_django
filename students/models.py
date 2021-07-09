@@ -15,7 +15,7 @@ class Student(models.Model):
     ])
     last_name = models.CharField(max_length=80, null=False)
     age = models.IntegerField(default=42, null=False)
-    phone_number = models.CharField(max_length=15, null=True)
+    phone_number = models.CharField(max_length=15, unique=True, null=True)
     email = models.EmailField(max_length=120, null=True)
     birthday = models.DateField(default=datetime.date.today, null=True, validators=[
         adult_validator

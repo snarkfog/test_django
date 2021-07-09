@@ -16,7 +16,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=80, null=False, validators=[
         MinLengthValidator(3)
     ])
-    phone_number = models.CharField(max_length=15, null=True)
+    phone_number = models.CharField(max_length=15, unique=True, null=True)
     email = models.EmailField(max_length=120, null=True)
     experience = models.IntegerField(default=5, null=False)
 

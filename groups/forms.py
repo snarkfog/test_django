@@ -18,7 +18,7 @@ class GroupBaseForm(ModelForm):
     def normalize_name(value):
         return value.lower().capitalize()
 
-    def clean_first_name(self):
+    def clean_group_name(self):
         group_name = self.cleaned_data['group_name']
         result = self.normalize_name(group_name)
         return result
