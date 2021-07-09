@@ -1,6 +1,7 @@
 import datetime
 import random
 
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from faker import Faker
@@ -10,7 +11,9 @@ from faker import Faker
 
 # Homework 7
 class Group(models.Model):
-    group_name = models.CharField(max_length=30, null=False)
+    group_name = models.CharField(max_length=30, null=False, validators=[
+        MinLengthValidator(2)
+    ])
     lessons_total = models.IntegerField(default=30, null=False)
     start_date = models.DateField(default='2021-01-01', null=False)
 
