@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+      <title>LMS</title>
+    {% endblock %}
+</head>
+<body>
+
+  <a href="{% url 'index' %}">
+      <h1>LMS</h1>
+  </a>
+
+  {% block content %}
+  {% endblock %}
+
+</body>
+</html>
