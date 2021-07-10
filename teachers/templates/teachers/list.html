@@ -30,10 +30,29 @@
 
     </form>
 
-    {% for teacher in teachers %}
+    <table class="table table-hover table-sm">
+        <tr>
+            <th>№</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Experience</th>
+            <th>Edit</th>
+        </tr>
 
-        <a href="{% url 'teachers:update' teacher.id %}">EDIT</a> {{ teacher }}<br>
+        {% for teacher in teachers %}
 
-    {% endfor %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ teacher.first_name }}</td>
+            <td>{{ teacher.last_name }}</td>
+            <td>{{ teacher.phone_number }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.experience }}</td>
+            <td><a href="{% url 'teachers:update' teacher.id %}">EDIT</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}
