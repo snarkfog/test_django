@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Students list</title>
+    <title>Teachers list</title>
 {% endblock %}
 
 {% block current %}
-    <h2>Students list</h2>
+    <h2>Teachers list</h2>
 {% endblock %}
 
 {% block links %}
-    <a href="{% url 'students:create' %}">
-        <h3>Create student</h3>
+    <a href="{% url 'teachers:create' %}">
+        <h3>Create teacher</h3>
     </a>
 {% endblock %}
 
 {% block content%}
+
     <form method="get">
         <label for="fname">First name:</label>
         <input type="text" name="first_name"><br><br>
@@ -22,15 +23,16 @@
         <label for="lname">Last name:</label>
         <input type="text" name="last_name"><br><br>
 
-        <label>Age:</label>
-        <input type="number" name="age"><br><br>
+        <label>Experience:</label>
+        <input type="number" name="experience"><br><br>
 
-        <input type="submit" value="Search">
+        <input type="submit" value="Submit">
+
     </form>
 
-    {% for student in students %}
+    {% for teacher in teachers %}
 
-        <a href="{% url 'students:update' student.id %}">EDIT</a> {{ student }}<br>
+        <a href="{% url 'teachers:update' teacher.id %}">EDIT</a> {{ teacher }}<br>
 
     {% endfor %}
 

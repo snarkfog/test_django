@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Create student</title>
+    <title>Create teacher</title>
 {% endblock %}
 
 {% block current %}
-    <h2>Create student</h2>
+    <h2>Create teacher</h2>
 {% endblock %}
 
 {% block links %}
-    <a href="{% url 'students:list' %}">
-        <h3>Students list</h3>
+    <a href="{% url 'teachers:list' %}">
+        <h3>Teachers list</h3>
     </a>
 {% endblock %}
 
 {% block content%}
+
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Create">
     </form>
+
 {% endblock %}

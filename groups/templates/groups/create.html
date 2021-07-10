@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Create student</title>
+    <title>Create group</title>
 {% endblock %}
 
 {% block current %}
-    <h2>Create student</h2>
+    <h2>Create group</h2>
 {% endblock %}
 
 {% block links %}
-    <a href="{% url 'students:list' %}">
-        <h3>Students list</h3>
+    <a href="{% url 'groups:list' %}">
+        <h3>Groups list</h3>
     </a>
 {% endblock %}
+
 
 {% block content%}
     <form method="post">

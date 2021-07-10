@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Groups list</title>
+{% endblock %}
+
+{% block current %}
+    <h2>Groups list</h2>
+{% endblock %}
+
+{% block links %}
+    <a href="{% url 'groups:create' %}">
+        <h3>Create group</h3>
+    </a>
+{% endblock %}
+
+{% block content%}
+    <form method="get">
+        <label>Group name:</label>
+        <input type="text" name="first_name"><br><br>
+
+        <label>Lessons total:</label>
+        <input type="number" name="lessons_total"><br><br>
+
+        <label>Start_date:</label>
+        <input type="date" name="start_date"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% for group in groups %}
+
+        <a href="{% url 'groups:update' group.id %}">EDIT</a> {{ group }}<br>
+
+    {% endfor %}
+
+{% endblock %}
