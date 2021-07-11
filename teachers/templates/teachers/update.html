@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Update student</title>
+    <title>Update teacher</title>
 {% endblock %}
 
 {% block current %}
-    <h2>Update student</h2>
+    <h2>Update teacher</h2>
 {% endblock %}
 
 {% block links %}
-    <a href="{% url 'students:list' %}">
-        <h3>Students list</h3>
+    <a href="{% url 'teachers:list' %}">
+        <h3>Teachers list</h3>
     </a>
-    <a href="{% url 'students:create' %}">
-        <h3>Students create</h3>
+    <a href="{% url 'teachers:create' %}">
+        <h3>Create teacher</h3>
     </a>
 {% endblock %}
 
 {% block content%}
+
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Update">
     </form>
+
 {% endblock %}

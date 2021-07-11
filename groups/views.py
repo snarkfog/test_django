@@ -1,10 +1,9 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render # noqa
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 
 from groups.forms import GroupCreateForm, GroupUpdateForm
 from groups.models import Group
-from groups.utils import format_records
 
 from webargs import fields
 from webargs.djangoparser import use_args
@@ -32,31 +31,16 @@ def get_groups(request, args):
         if param_value:
             groups = groups.filter(**{param_name: param_value})
 
-    html_form = """
-        <form method="get">
-
-        <label>Group name:</label>
-        <input type="text" name="first_name"><br><br>
-
-        <label>Lessons total:</label>
-        <input type="number" name="lessons_total"><br><br>
-
-        <label>Start_date:</label>
-        <input type="date" name="start_date"><br><br>
-
-        <input type="submit" value="Submit">
-
-       </form>
-    """
-
-    records = format_records(groups)
-
-    response = html_form + records
-
-    return HttpResponse(response)
+    return render(
+        request=request,
+        template_name='groups/list.html',
+        context={
+            'groups': groups
+        }
+    )
 
 
-@csrf_exempt
+# @csrf_exempt
 def create_group(request):
 
     if request.method == 'GET':
@@ -69,22 +53,19 @@ def create_group(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/groups')
+            return HttpResponseRedirect(reverse('groups:list'))
 
-    html_form = f"""
-                <form method="post">
-                {form.as_p()}
-                <input type="submit" value="Submit">
-                </form>
-                """
-
-    response = html_form
-
-    return HttpResponse(response)
+    return render(
+        request=request,
+        template_name='groups/create.html',
+        context={
+            'form': form
+        }
+    )
 
 
 # Homework 10
-@csrf_exempt
+# @csrf_exempt
 def update_group(request, id): # noqa
 
     group = Group.objects.get(id=id)
@@ -102,15 +83,12 @@ def update_group(request, id): # noqa
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/groups')
+            return HttpResponseRedirect(reverse('groups:list'))
 
-    html_form = f"""
-                <form method="post">
-                {form.as_p()}
-                <input type="submit" value="Save">
-                </form>
-                """
-
-    response = html_form
-
-    return HttpResponse(response)
+    return render(
+        request=request,
+        template_name='groups/update.html',
+        context={
+            'form': form
+        }
+    )

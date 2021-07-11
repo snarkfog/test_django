@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
 {% block title %}
     <title>Students list</title>
+{% endblock %}
+
+{% block current %}
+    <h2>Students list</h2>
+{% endblock %}
+
+{% block links %}
+    <a href="{% url 'students:create' %}">
+        <h3>Create student</h3>
+    </a>
 {% endblock %}
 
 {% block content%}
@@ -18,10 +34,33 @@
         <input type="submit" value="Search">
     </form>
 
-    {% for student in students %}
+    <table>
+        <tr>
+            <th>№</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Enroll date</th>
+            <th>Graduate date</th>
+            <th>Edit</th>
+        </tr>
 
-        <a href="{% url 'students:update' student.id %}">EDIT</a> {{ student }}<br>
+        {% for student in students %}
 
-    {% endfor %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.phone_number }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.enroll_date }}</td>
+            <td>{{ student.graduate_date }}</td>
+            <td><a href="{% url 'students:update' student.id %}">EDIT</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}
