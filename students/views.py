@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from faker import Faker
@@ -88,7 +88,7 @@ def create_student(request):
 # @csrf_exempt
 def update_student(request, id): # noqa
 
-    student = Student.objects.get(id=id)
+    student = get_object_or_404(Student, id=id)
 
     if request.method == 'GET':
 
@@ -110,5 +110,21 @@ def update_student(request, id): # noqa
         template_name='students/update.html',
         context={
             'form': form
+        }
+    )
+
+
+def delete_student(request, pk):
+    student = get_object_or_404(Student, id=pk)
+
+    if request.method == 'POST':
+        student.delete()
+        return HttpResponseRedirect(reverse('students:list'))
+
+    return render(
+        request=request,
+        template_name='students/delete.html',
+        context={
+            'student': student
         }
     )

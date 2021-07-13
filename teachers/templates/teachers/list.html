@@ -4,6 +4,24 @@
     <title>Teachers list</title>
 {% endblock %}
 
+{% block custom_css %}
+    table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+       }
+
+       td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+       }
+
+       tr:nth-child(even) {
+            background-color: #dddddd;
+       }
+{% endblock %}
+
 {% block current %}
     <h2>Teachers list</h2>
 {% endblock %}
@@ -38,7 +56,7 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Experience</th>
-            <th>Edit</th>
+            <th>🖉</th>
         </tr>
 
         {% for teacher in teachers %}

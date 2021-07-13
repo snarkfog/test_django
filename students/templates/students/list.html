@@ -1,14 +1,26 @@
 {% extends 'base.html' %}
 
-<style>
-table, th, td {
-  border: 1px solid black;
-}
-</style>
-
 {% block title %}
     <title>Students list</title>
 {% endblock %}
+
+<!--{% block custom_css %}-->
+    <!--table {-->
+            <!--font-family: arial, sans-serif;-->
+            <!--border-collapse: collapse;-->
+            <!--width: 50%;-->
+       <!--}-->
+
+       <!--td, th {-->
+            <!--border: 1px solid #dddddd;-->
+            <!--text-align: left;-->
+            <!--padding: 8px;-->
+       <!--}-->
+
+       <!--tr:nth-child(even) {-->
+            <!--background-color: #dddddd;-->
+       <!--}-->
+<!--{% endblock %}-->
 
 {% block current %}
     <h2>Students list</h2>
@@ -34,17 +46,21 @@ table, th, td {
         <input type="submit" value="Search">
     </form>
 
-    <table>
+    <p><strong>Count of students: {{ students.count }}</strong></p>
+
+
+    <table class="table table-hover table-sm">
         <tr>
-            <th>№</th>
+            <th></th>
             <th>First name</th>
             <th>Last name</th>
             <th>Age</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th><i class="bi bi-telephone-fill"></i></th>
+            <th><i class="bi bi-envelope-fill"></i></th>
             <th>Enroll date</th>
             <th>Graduate date</th>
-            <th>Edit</th>
+            <th><i class="bi bi-pencil-fill"></i></th>
+            <th><i class="bi bi-trash-fill"></i></th>
         </tr>
 
         {% for student in students %}
@@ -59,8 +75,8 @@ table, th, td {
             <td>{{ student.enroll_date }}</td>
             <td>{{ student.graduate_date }}</td>
             <td><a href="{% url 'students:update' student.id %}">EDIT</a></td>
+            <td><a href="{% url 'students:delete' student.pk %}">DELETE</a></td>
         </tr>
         {% endfor %}
     </table>
-
 {% endblock %}

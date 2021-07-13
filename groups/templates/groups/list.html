@@ -4,6 +4,24 @@
     <title>Groups list</title>
 {% endblock %}
 
+{% block custom_css %}
+    table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+       }
+
+       td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+       }
+
+       tr:nth-child(even) {
+            background-color: #dddddd;
+       }
+{% endblock %}
+
 {% block current %}
     <h2>Groups list</h2>
 {% endblock %}
@@ -34,7 +52,7 @@
             <th>Group name</th>
             <th>Lessons total</th>
             <th>Start date</th>
-            <th>Edit</th>
+            <th>🖉</th>
         </tr>
 
         {% for group in groups %}
