@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Delete teacher</title>
+{% endblock %}
+
+{% block current %}
+    <h2>Delete teacher</h2>
+{% endblock %}
+
+{% block content%}
+    <form method="post">
+        {% csrf_token %}
+        <p>Do you really want to remove {{ teacher.first_name }} {{ teacher.last_name }}?</p>
+        {{ form.as_p }}
+        <input class="btn btn-danger" type="submit" value="Agree">
+        <a type="button" class="btn btn-primary" href="{% url 'teachers:list' %}">Cancel</a>
+    </form>
+{% endblock %}
