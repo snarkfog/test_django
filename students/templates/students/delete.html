@@ -13,7 +13,7 @@
         {% csrf_token %}
         <p>Do you really want to remove {{ student.first_name }} {{ student.last_name }}?</p>
         {{form.as_p}}
-        <input type="button" class="btn btn-danger" type="submit" value="Agree">
+        <input class="btn btn-danger" type="submit" value="Agree">
         <a type="button" class="btn btn-primary" href="{% url 'students:list' %}">Cancel</a>
     </form>
 {% endblock %}

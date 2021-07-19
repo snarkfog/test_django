@@ -34,7 +34,7 @@
 
 {% block content%}
     <form method="get">
-        <label for="fname">First name:</label>
+        <label for="firname">First name:</label>
         <input type="text" name="first_name"><br><br>
 
         <label for="lname">Last name:</label>
@@ -75,7 +75,7 @@
             <td>{{ student.enroll_date }}</td>
             <td>{{ student.graduate_date }}</td>
             <td><a href="{% url 'students:update' student.id %}">EDIT</a></td>
-            <td><a href="{% url 'students:delete' student.pk %}">DELETE</a></td>
+            <td><a href="{% url 'students:delete' student.id %}">DELETE</a></td>
         </tr>
         {% endfor %}
     </table>

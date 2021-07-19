@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from teachers.forms import TeacherCreateForm, TeacherUpdateForm
@@ -73,7 +73,7 @@ def create_teacher(request):
 # @csrf_exempt
 def update_teacher(request, id): # noqa
 
-    teacher = Teacher.objects.get(id=id)
+    teacher = get_object_or_404(Teacher, id=id)
 
     if request.method == 'GET':
 
@@ -95,5 +95,22 @@ def update_teacher(request, id): # noqa
         template_name='teachers/update.html',
         context={
             'form': form
+        }
+    )
+
+
+# Homework 12
+def delete_teacher(request, pk):
+    teacher = get_object_or_404(Teacher, id=pk)
+
+    if request.method == 'POST':
+        teacher.delete()
+        return HttpResponseRedirect(reverse('teachers:list'))
+
+    return render(
+        request=request,
+        template_name='teachers/delete.html',
+        context={
+            'teacher': teacher
         }
     )
