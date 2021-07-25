@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'webargs',
     'faker',
+    'crispy_forms',
+    'django_filters',
 
     'students',
     'groups',
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'uk-ua'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -141,3 +143,5 @@ INTERNAL_IPS = [
 
 DATE_FORMAT = 'Y-m-d'
 USE_L10N = False
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,11 +1,15 @@
 import datetime
 
+from dateutil.relativedelta import relativedelta
+
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from faker import Faker
 
-from students.validators import AdultValidator
+from groups.models import Group
+
+from students.validators import AdultValidator # noqa
 
 
 # Create your models here.
@@ -17,12 +21,12 @@ class Student(models.Model):
     age = models.IntegerField(default=42, null=False)
     phone_number = models.CharField(max_length=15, unique=True, null=True)
     email = models.EmailField(max_length=120, null=True)
-    birthday = models.DateField(default=datetime.date.today, null=True, validators=[
-        # adult_validator,
-        AdultValidator(21)
-    ])
+    birthday = models.DateField(default=datetime.date.today, null=True,
+                                # validators=[AdultValidator(21)]
+                                )
     enroll_date = models.DateField(default=datetime.date.today, null=True)
     graduate_date = models.DateField(default=datetime.date.today, null=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, related_name='students')
 
     def __str__(self):
         return f'{self.full_name()}, ' \
@@ -30,6 +34,7 @@ class Student(models.Model):
                f'{self.phone_number}, ' \
                f'{self.email} ' \
                f'{self.birthday}, ' \
+               f'{self.group}' \
                f'{self.enroll_date},' \
                f'{self.graduate_date}'
 
@@ -47,4 +52,5 @@ class Student(models.Model):
                 birthday=faker.date_between(start_date='-65y', end_date='-18y'),
             )
 
+            st.age = relativedelta(datetime.date.today(), st.birthday).years
             st.save()
