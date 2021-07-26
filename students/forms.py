@@ -17,6 +17,7 @@ class StudentBaseForm(ModelForm):
             'age',
             'phone_number',
             'birthday',
+            'group',
             'enroll_date',
             'graduate_date',
         ]

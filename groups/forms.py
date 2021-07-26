@@ -1,5 +1,7 @@
 from django.forms import DateInput, ModelForm
 
+import django_filters
+
 from groups.models import Group
 
 
@@ -35,3 +37,13 @@ class GroupUpdateForm(GroupBaseForm):
             # 'lessons_total',
             'start_date',
         ]
+
+
+# Homework 13
+class GroupsFilter(django_filters.FilterSet):
+    class Meta:
+        model = Group
+        fields = {
+            'group_name': ['exact', 'icontains'],
+            'lessons_total': ['lt', 'gt'],
+        }
