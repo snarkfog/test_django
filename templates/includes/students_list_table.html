@@ -1,0 +1,34 @@
+<table class="table table-hover table-sm">
+    <tr>
+        <th></th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th><i class="bi bi-telephone-fill"></i></th>
+        <th><i class="bi bi-envelope-fill"></i></th>
+        <th>Group</th>
+        <th>Head man</th>
+        <th>Enroll date</th>
+        <th>Graduate date</th>
+        <th><i class="bi bi-pencil-fill"></i></th>
+        <th><i class="bi bi-trash-fill"></i></th>
+    </tr>
+
+    {% for student in list_objects %}
+
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student.first_name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.phone_number }}</td>
+        <td>{{ student.email }}</td>
+        <td>{% if student.group %}{{ student.group }}{% endif %}</td>
+        <td>{% if student.headed_group %}{{ student.headed_group }}{% endif %}</td>
+        <td>{{ student.enroll_date }}</td>
+        <td>{{ student.graduate_date }}</td>
+        <td><a href="{% url 'students:update' student.id %}">EDIT</a></td>
+        <td><a href="{% url 'students:delete' student.id %}">DELETE</a></td>
+    </tr>
+    {% endfor %}
+</table>

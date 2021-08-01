@@ -3,20 +3,11 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Update student</title>
+    Update student
 {% endblock %}
 
-{% block current %}
-    <h2>Update student</h2>
-{% endblock %}
-
-{% block links %}
-    <a href="{% url 'students:list' %}">
-        <h3>Students list</h3>
-    </a>
-    <a href="{% url 'students:create' %}">
-        <h3>Students create</h3>
-    </a>
+{% block header %}
+    Update student
 {% endblock %}
 
 {% block content%}

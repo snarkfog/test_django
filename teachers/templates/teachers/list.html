@@ -3,50 +3,16 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Teachers list</title>
+    Teachers list
 {% endblock %}
 
-<!--{% block custom_css %}-->
-    <!--table {-->
-            <!--font-family: arial, sans-serif;-->
-            <!--border-collapse: collapse;-->
-            <!--width: 50%;-->
-       <!--}-->
-
-       <!--td, th {-->
-            <!--border: 1px solid #dddddd;-->
-            <!--text-align: left;-->
-            <!--padding: 8px;-->
-       <!--}-->
-
-       <!--tr:nth-child(even) {-->
-            <!--background-color: #dddddd;-->
-       <!--}-->
-<!--{% endblock %}-->
-
-{% block current %}
-    <h2>Teachers list</h2>
-{% endblock %}
-
-{% block links %}
-    <a href="{% url 'teachers:create' %}">
-        <h3>Create teacher</h3>
-    </a>
+{% block header %}
+    Teachers list
 {% endblock %}
 
 {% block content%}
 
     <form method="get">
-        <!--<label for="fname">First name:</label>-->
-        <!--<input type="text" name="first_name"><br><br>-->
-
-       <!--<label for="lname">Last name:</label>-->
-        <!--<input type="text" name="last_name"><br><br>-->
-
-        <!--<label>Experience:</label>-->
-        <!--<input type="number" name="experience"><br><br>-->
-
-        <!--<input type="submit" value="Submit">-->
 
          {{ obj_filter.form | crispy }}
 

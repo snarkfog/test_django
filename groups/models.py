@@ -15,7 +15,17 @@ class Group(models.Model):
         MinLengthValidator(2)
     ])
     lessons_total = models.IntegerField(default=30, null=False)
-    start_date = models.DateField(default='2021-01-01', null=False)
+    start_date = models.DateField(default=datetime.date.today(), null=False)
+    end_date = models.DateField(null=True, blank=True)
+    headman = models.OneToOneField(
+        'students.Student',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='headed_group'
+    )
+
+    create_datetime = models.DateTimeField(auto_now_add=True)
+    update_datetime = models.DateTimeField(auto_now=True)
 
 # Homework 8
     def __str__(self):

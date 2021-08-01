@@ -11,9 +11,11 @@ class GroupBaseForm(ModelForm):
         fields = ['group_name',
                   'lessons_total',
                   'start_date',
+                  'end_date',
                   ]
         widgets = {
                       'start_date': DateInput(attrs={'type': 'date'}),
+                      'end_date': DateInput(attrs={'type': 'date'}),
         }
 
     @staticmethod
@@ -27,16 +29,14 @@ class GroupBaseForm(ModelForm):
 
 
 class GroupCreateForm(GroupBaseForm):
-    pass
+    class Meta(GroupBaseForm.Meta):
+        fields = '__all__'
+        exclude = ['end_date']
 
 
 class GroupUpdateForm(GroupBaseForm):
     class Meta(GroupBaseForm.Meta):
-        fields = [
-            'group_name',
-            # 'lessons_total',
-            'start_date',
-        ]
+        fields = '__all__'
 
 
 # Homework 13

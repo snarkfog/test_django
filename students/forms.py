@@ -72,15 +72,16 @@ class StudentCreateForm(StudentBaseForm):
 
 class StudentUpdateForm(StudentBaseForm):
     class Meta(StudentBaseForm.Meta):
-        fields = [
-            'first_name',
-            'last_name',
-            # 'age',
-            'phone_number',
-            'birthday',
-            'enroll_date',
-            'graduate_date',
-        ]
+        # fields = [
+        #    'first_name',
+        #   'last_name',
+        #    # 'age',
+        #    'phone_number',
+        #    'birthday',
+        #    'enroll_date',
+        #    'graduate_date',
+        # ]
+        fields = '__all__'
 
 
 class StudentsFilter(django_filters.FilterSet):

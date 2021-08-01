@@ -27,9 +27,9 @@ from webargs.djangoparser import use_args
 def get_groups(request, args):
     groups = Group.objects.all()
 
-    for param_name, param_value in args.items():
-        if param_value:
-            groups = groups.filter(**{param_name: param_value})
+    # for param_name, param_value in args.items():
+    #     if param_value:
+    #         groups = groups.filter(**{param_name: param_value})
 
     obj_filter = GroupsFilter(data=request.GET, queryset=groups)
 
@@ -92,7 +92,9 @@ def update_group(request, id): # noqa
         request=request,
         template_name='groups/update.html',
         context={
-            'form': form
+            'form': form,
+            'group': group,
+            'students': group.students.select_related('headed_group').all()
         }
     )
 

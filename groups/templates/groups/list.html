@@ -3,49 +3,15 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Groups list</title>
+    Groups list
 {% endblock %}
 
-<!--{% block custom_css %}-->
-    <!--table {-->
-            <!--font-family: arial, sans-serif;-->
-            <!--border-collapse: collapse;-->
-            <!--width: 50%;-->
-       <!--}-->
-
-       <!--td, th {-->
-            <!--border: 1px solid #dddddd;-->
-            <!--text-align: left;-->
-            <!--padding: 8px;-->
-       <!--}-->
-
-       <!--tr:nth-child(even) {-->
-            <!--background-color: #dddddd;-->
-       <!--}-->
-<!--{% endblock %}-->
-
-{% block current %}
-    <h2>Groups list</h2>
-{% endblock %}
-
-{% block links %}
-    <a href="{% url 'groups:create' %}">
-        <h3>Create group</h3>
-    </a>
+{% block header %}
+    Groups list
 {% endblock %}
 
 {% block content%}
     <form method="get">
-       <!--<label>Group name:</label>-->
-         <!--<input type="text" name="first_name"><br><br>-->
-
-         <!--<label>Lessons total:</label>-->
-         <!--<input type="number" name="lessons_total"><br><br>-->
-
-         <!--<label>Start_date:</label>-->
-         <!--<input type="date" name="start_date"><br><br>-->
-
-         <!--<input type="submit" value="Submit">-->
 
         {{ obj_filter.form | crispy }}
     </form>
@@ -58,6 +24,7 @@
             <th>Group name</th>
             <th>Lessons total</th>
             <th>Start date</th>
+            <th>End date</th>
             <th><i class="bi bi-pencil-fill"></i></th>
             <th><i class="bi bi-trash-fill"></i></th>
         </tr>
@@ -69,6 +36,7 @@
             <td>{{ group.group_name }}</td>
             <td>{{ group.lessons_total }}</td>
             <td>{{ group.start_date }}</td>
+            <td>{{ group.end_date }}</td>
             <td><a href="{% url 'groups:update' group.id %}">EDIT</a></td>
             <td><a href="{% url 'groups:delete' group.id %}">DELETE</a></td>
         </tr>

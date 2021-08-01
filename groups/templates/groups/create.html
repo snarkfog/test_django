@@ -3,19 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title>Create group</title>
+    Create group
 {% endblock %}
 
-{% block current %}
-    <h2>Create group</h2>
+{% block header %}
+    Create group
 {% endblock %}
-
-{% block links %}
-    <a href="{% url 'groups:list' %}">
-        <h3>Groups list</h3>
-    </a>
-{% endblock %}
-
 
 {% block content%}
     <form method="post">
