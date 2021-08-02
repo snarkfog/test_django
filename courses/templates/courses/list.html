@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Courses list
+{% endblock %}
+
+{% block header %}
+    Courses list
+{% endblock %}
+
+{% block content%}
+    <form method="get">
+
+        {{ obj_filter.form | crispy }}
+    </form>
+
+    <p><strong>Count of courses: {{ courses.count }}</strong></p>
+
+    <table class="table table-hover table-sm">
+        <tr>
+            <th></th>
+            <th>Course name</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th><i class="bi bi-pencil-fill"></i></th>
+            <th><i class="bi bi-trash-fill"></i></th>
+        </tr>
+
+        {% for course in obj_filter.qs %}
+
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.start_date }}</td>
+            <td>{{ course.end_date }}</td>
+            <td><a href="{% url 'courses:update' course.id %}">EDIT</a></td>
+            <td><a href="{% url 'courses:delete' course.id %}">DELETE</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+ <table class="table table-hover table-sm">
+        <tr>
+            <th></th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th><i class="bi bi-telephone-fill"></i></th>
+            <th><i class="bi bi-envelope-fill"></i></th>
+            <th>Experience</th>
+            <th>Group</th>
+            <th><i class="bi bi-pencil-fill"></i></th>
+            <th><i class="bi bi-trash-fill"></i></th>
+        </tr>
+
+     {% for teacher in list_objects %}
+
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ teacher.first_name }}</td>
+            <td>{{ teacher.last_name }}</td>
+            <td>{{ teacher.phone_number }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.experience }}</td>
+            <td>{% if teacher.group %}{{ teacher.group }}{% endif %}</td>
+            <td><a href="{% url 'teachers:update' teacher.id %}">EDIT</a></td>
+            <td><a href="{% url 'teachers:delete' teacher.id %}">DELETE</a></td>
+        </tr>
+     {% endfor %}
+</table>
