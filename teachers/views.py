@@ -31,9 +31,9 @@ from webargs.djangoparser import use_args
 def get_teachers(request, args):
     teachers = Teacher.objects.all()
 
-    for param_name, param_value in args.items():
-        if param_value:
-            teachers = teachers.filter(**{param_name: param_value})
+    # for param_name, param_value in args.items():
+    #     if param_value:
+    #         teachers = teachers.filter(**{param_name: param_value})
 
     obj_filter = TeachersFilter(data=request.GET, queryset=teachers)
 
