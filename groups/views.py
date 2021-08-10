@@ -61,10 +61,11 @@ def create_group(request):
         }
     )
 
+
 # Homework 10
 # @csrf_exempt
-def update_group(request, id): # noqa
-    group = get_object_or_404(Group, id=id)
+def update_group(request, pk):
+    group = get_object_or_404(Group, id=pk)
 
     if request.method == 'POST':
         form = GroupCreateForm(request.POST, instance=group)

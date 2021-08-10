@@ -92,9 +92,9 @@ def create_student(request):
 
 
 # @csrf_exempt
-def update_student(request, id): # noqa
+def update_student(request, pk):
 
-    student = get_object_or_404(Student, id=id)
+    student = get_object_or_404(Student, id=pk)
 
     if request.method == 'GET':
 
