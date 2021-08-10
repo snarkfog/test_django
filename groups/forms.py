@@ -2,7 +2,7 @@ from django.forms import DateInput, ModelForm
 
 import django_filters
 
-from groups.models import Group
+from .models import Group
 
 
 class GroupBaseForm(ModelForm):

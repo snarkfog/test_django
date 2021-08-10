@@ -18,8 +18,12 @@
         <a class="btn btn-primary mt-3" href="{% url 'groups:list' %}">Cancel</a>
     </form>
 
-    {% with list_objects=group.students.all %}
+    {% with list_objects=students %}
         {% include 'includes/students_list_table.html' %}
+    {% endwith %}
+
+    {% with list_objects=group.teachers.all %}
+        {% include 'includes/teachers_list_table.html' %}
     {% endwith %}
 
 {% endblock %}

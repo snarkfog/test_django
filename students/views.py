@@ -1,6 +1,9 @@
+from core.views import EditView
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView
 
 from faker import Faker
 
@@ -131,3 +134,17 @@ def delete_student(request, pk):
             'student': student
         }
     )
+
+
+class UpdateStudentView(EditView):
+    model = Student
+    form_class = StudentUpdateForm
+    success_url = 'students:list'
+    template_name = 'students/update.html'
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    form_class = StudentUpdateForm
+    success_url = reverse_lazy('students:list')
+    template_name = 'students/update.html'

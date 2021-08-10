@@ -6,6 +6,8 @@ from django.db import models
 
 from faker import Faker
 
+from teachers.models import Teacher
+
 
 # Create your models here.
 
@@ -15,13 +17,18 @@ class Group(models.Model):
         MinLengthValidator(2)
     ])
     lessons_total = models.IntegerField(default=30, null=False)
-    start_date = models.DateField(default=datetime.date.today(), null=False)
+    start_date = models.DateField(default=datetime.date.today, null=False)
     end_date = models.DateField(null=True, blank=True)
     headman = models.OneToOneField(
         'students.Student',
         on_delete=models.SET_NULL,
         null=True,
         related_name='headed_group'
+    )
+
+    teachers = models.ManyToManyField(
+        to=Teacher,
+        related_name='groups'
     )
 
     create_datetime = models.DateTimeField(auto_now_add=True)
