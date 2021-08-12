@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
@@ -36,3 +36,8 @@ class AccountUpdateView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class AccountPasswordChangeView(PasswordChangeView):
+    template_name = 'accounts/password_change_form.html'
+    success_url = reverse_lazy('accounts:password_change_done')

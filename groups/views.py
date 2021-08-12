@@ -25,8 +25,6 @@ class GroupUpdateView(UpdateView):
     form_class = GroupUpdateForm
     success_url = reverse_lazy('groups:list')
 
-    pk_url_kwarg = 'ppk'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['students'] = self.get_object().students.select_related('group', 'headed_group').all()

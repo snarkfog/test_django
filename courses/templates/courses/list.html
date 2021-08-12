@@ -17,7 +17,7 @@
 
     </form>
 
-    <p><strong>Count of courses: {{ courses.count }}</strong></p>
+    <p><strong>Count of courses: {{ object_list.count }}</strong></p>
 
     <table class="table table-hover table-sm">
         <tr>
@@ -29,7 +29,7 @@
             <th><i class="bi bi-trash-fill"></i></th>
         </tr>
 
-        {% for course in obj_filter.qs %}
+        {% for course in object_list %}
 
         <tr>
             <td>{{ forloop.counter }}</td>
