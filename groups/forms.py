@@ -1,49 +1,29 @@
-from django.forms import DateInput, ModelForm
+from django.forms import ChoiceField, DateInput, ModelForm
 
-import django_filters
-
-from .models import Group
+from groups.models import Group
 
 
 class GroupBaseForm(ModelForm):
     class Meta:
         model = Group
-        fields = ['group_name',
-                  'lessons_total',
-                  'start_date',
-                  'end_date',
-                  ]
-        widgets = {
-                      'start_date': DateInput(attrs={'type': 'date'}),
-                      'end_date': DateInput(attrs={'type': 'date'}),
-        }
+        fields = '__all__'
 
-    @staticmethod
-    def normalize_name(value):
-        return value.lower().capitalize()
-
-    def clean_group_name(self):
-        group_name = self.cleaned_data['group_name']
-        result = self.normalize_name(group_name)
-        return result
+        widgets = {'end_date': DateInput(attrs={'type': 'date'})}
 
 
 class GroupCreateForm(GroupBaseForm):
     class Meta(GroupBaseForm.Meta):
-        fields = '__all__'
-        exclude = ['end_date']
+        exclude = ['end_date', 'headman']
 
 
 class GroupUpdateForm(GroupBaseForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['headman_field'] = ChoiceField(
+            choices=[(st.id, str(st)) for st in self.instance.students.all()],
+            label='Headman',
+            required=False
+        )
+
     class Meta(GroupBaseForm.Meta):
-        fields = '__all__'
-
-
-# Homework 13
-class GroupsFilter(django_filters.FilterSet):
-    class Meta:
-        model = Group
-        fields = {
-            'group_name': ['exact', 'icontains'],
-            'lessons_total': ['lt', 'gt'],
-        }
+        exclude = ['headman']

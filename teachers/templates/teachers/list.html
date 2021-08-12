@@ -3,24 +3,26 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Teachers list
+<title>Teachers list</title>
 {% endblock %}
 
 {% block header %}
-    Teachers list
-{% endblock %}
+    List of teachers
+{% endblock%}
 
-{% block content%}
-
+{% block content %}
+    <div class="collapse" id="collapseExample">
     <form method="get">
 
-         {{ obj_filter.form | crispy }}
+        {{ object_list.form | crispy }}
 
+        <input class="btn btn-success mb-3 mt-3" type="submit" value="Search">
     </form>
+    </div>
 
-    <p><strong>Count of teachers: {{ obj_filter.qs.count }}</strong></p>
+    <p><strong>Count of teachers: {{ object_list.qs.count }}</strong></p>
 
-    {% with list_objects=obj_filter.qs  %}
+    {% with list_objects=object_list.qs  %}
         {% include 'includes/teachers_list_table.html' %}
     {% endwith %}
 

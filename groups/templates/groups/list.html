@@ -7,16 +7,12 @@
 {% endblock %}
 
 {% block header %}
-    Groups list
+    List of groups
 {% endblock %}
 
-{% block content%}
-    <form method="get">
+{% block content %}
 
-        {{ obj_filter.form | crispy }}
-    </form>
-
-    <p><strong>Count of groups: {{ obj_filter.qs.count }}</strong></p>
+    <p><strong>Count of groups: {{ object_list.count }}</strong></p>
 
     <table class="table table-hover table-sm">
         <tr>
@@ -28,9 +24,7 @@
             <th><i class="bi bi-pencil-fill"></i></th>
             <th><i class="bi bi-trash-fill"></i></th>
         </tr>
-
-        {% for group in obj_filter.qs %}
-
+        {% for group in object_list %}
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ group.group_name }}</td>

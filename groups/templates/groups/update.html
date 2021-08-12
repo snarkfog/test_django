@@ -10,20 +10,16 @@
     Update group
 {% endblock %}
 
-{% block content%}
+{% block content %}
     <form method="post">
         {% csrf_token %}
-       {{ form | crispy }}
-        <input class="btn btn-primary mt-3" type="submit" value="Update">
+        {{ form | crispy }}
+        <button class="btn btn-success mt-3" type="submit" id="btn_save">Save</button>
         <a class="btn btn-primary mt-3" href="{% url 'groups:list' %}">Cancel</a>
     </form>
 
     {% with list_objects=students %}
         {% include 'includes/students_list_table.html' %}
-    {% endwith %}
-
-    {% with list_objects=group.teachers.all %}
-        {% include 'includes/teachers_list_table.html' %}
     {% endwith %}
 
 {% endblock %}
