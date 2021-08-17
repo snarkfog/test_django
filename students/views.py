@@ -1,6 +1,7 @@
 from core.views import EditView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
@@ -124,21 +125,21 @@ class StudentsListView(LoginRequiredMixin, ListView):
         return obj_list
 
 
-class StudentCreateView(CreateView):
+class StudentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Student
     template_name = 'students/create.html'
     form_class = StudentCreateForm
     success_url = reverse_lazy('students:list')
 
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
     model = Student
     form_class = StudentUpdateForm
     success_url = reverse_lazy('students:list')
     template_name = 'students/update.html'
 
 
-class StudentDeleteView(DeleteView):
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
     template_name = 'students/delete.html'
     success_url = reverse_lazy('students:list')
