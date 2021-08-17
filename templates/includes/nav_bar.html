@@ -27,10 +27,10 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Groups
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
             <li><a class="dropdown-item" href="{% url 'groups:list' %}">List of groups</a></li>
             <li><a class="dropdown-item" href="{% url 'groups:create' %}">Create new group</a></li>
           </ul>
@@ -46,26 +46,26 @@
           </ul>
         </li>
 
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
-<!--        </li>-->
+{#        <li class="nav-item">#}
+{#          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+{#        </li>#}
       </ul>
       <ul class="navbar-nav d-flex">
          <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
              Account
            </a>
-           <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
            {% if user.is_authenticated %}
                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Sign Out</a></li>
                <li><hr class="dropdown-divider"></li>
                <li><a class="dropdown-item" href="{% url 'accounts:profile_update' %}">Profile {{ user.username }}</a></li>
                <li><hr class="dropdown-divider"></li>
-               <li><a class="dropdown-item" href="{% url 'accounts:password_change' %}">Change password</a></li>
+               <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password {{ user.username }}</a></li>
            {% else %}
-             <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a></li>
+             <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Sign In</a></li>
              <li><hr class="dropdown-divider"></li>
-             <li><a class="dropdown-item" href="{% url 'accounts:registration' %}">Registration</a></li>
+             <li><a class="dropdown-item" href="{% url 'accounts:registration' %}">Sign Up</a></li>
            {% endif %}
            </ul>
          </li>

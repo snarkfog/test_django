@@ -1,5 +1,6 @@
 from core.views import EditView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
@@ -42,7 +43,8 @@ from students.models import Student
 #     )
 #
 #
-# # @csrf_exempt  csrf token для проверки аутентификации
+# # @csrf_exempt  # csrf token для проверки аутентификации
+# # @login_required  # ограничение доступа для незарегистрированных пользователей
 # def create_student(request):
 #     if request.method == 'POST':
 #         form = StudentCreateForm(request.POST)
@@ -109,7 +111,7 @@ class UpdateStudentView(EditView):
     template_name = 'students/update.html'
 
 
-class StudentsListView(ListView):
+class StudentsListView(LoginRequiredMixin, ListView):
     model = Student
     template_name = 'students/list.html'
 
@@ -124,7 +126,7 @@ class StudentsListView(ListView):
 
 class StudentCreateView(CreateView):
     model = Student
-    template_name = 'teachers/create.html'
+    template_name = 'students/create.html'
     form_class = StudentCreateForm
     success_url = reverse_lazy('students:list')
 
