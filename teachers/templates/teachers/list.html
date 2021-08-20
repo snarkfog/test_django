@@ -20,10 +20,12 @@
     </form>
     </div>
 
-    <p><strong>Count of teachers: {{ object_list.qs.count }}</strong></p>
+{#    <p><strong>Count of teachers: {{ object_list.qs.count }}</strong></p>#}
 
-    {% with list_objects=object_list.qs  %}
+    {% with list_objects=object_list  %}
         {% include 'includes/teachers_list_table.html' %}
     {% endwith %}
+
+    {% include 'includes/paginator.html' %}
 
 {% endblock %}

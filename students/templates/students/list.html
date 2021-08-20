@@ -21,7 +21,7 @@
     </form>
     </div>
 
-    <p><strong>Count of students: {{ object_list.count }}</strong></p>
+{#    <p><strong>Count of students: {{ object_list.qs.count }}</strong></p>#}
 
     {% with list_objects=object_list  %}
         {% include 'includes/students_list_table.html' %}
