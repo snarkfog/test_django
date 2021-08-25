@@ -12,7 +12,7 @@
 
 {% block content %}
 
-    <p><strong>Count of groups: {{ object_list.count }}</strong></p>
+{#     <p><strong>Count of groups: {{ object_list.count }}</strong></p> #}
 
     <table class="table table-hover table-sm">
         <tr>
@@ -26,7 +26,7 @@
         </tr>
         {% for group in object_list %}
         <tr>
-            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
             <td>{{ group.group_name }}</td>
             <td>{{ group.lessons_total }}</td>
             <td>{{ group.start_date }}</td>
@@ -36,5 +36,7 @@
         </tr>
         {% endfor %}
     </table>
+
+    {% include 'includes/paginator.html' %}
 
 {% endblock %}
