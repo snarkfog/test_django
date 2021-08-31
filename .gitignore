@@ -135,5 +135,7 @@ buffer.txt
 !**/migrations
 !**/migrations/__init__.py
 
+media/
+
 Notes.md
 passwords.py

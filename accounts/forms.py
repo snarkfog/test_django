@@ -1,4 +1,7 @@
+from accounts.models import Profile
+
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.forms import ModelForm
 
 
 class AccountRegistrationForm(UserCreationForm):
@@ -22,3 +25,9 @@ class AccountUpdateForm(UserChangeForm):
             'last_name',
             'email',
         ]
+
+
+class AccountUpdateProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'interests']
