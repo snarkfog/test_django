@@ -7,11 +7,12 @@
  {% endblock %}
 
  {% block header %}
-     Update your profile
+     <h2 style="font-style:italic"><span style="color:#0033ff"><cite><strong>Update your profile</strong></cite></span></h2>
+     <hr />
  {% endblock %}
 
  {% block content %}
-     <form method="post">
+     <form method="post" enctype="multipart/form-data">
          {% csrf_token %}
          <div class="media">
             <div class="img-circle.vert">

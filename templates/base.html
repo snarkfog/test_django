@@ -25,7 +25,10 @@
 
     <div class="container mt-4 pt-4">
     <div class="border rounder text-center p-3 m-3 mb-5 bg-light shadow">
-        <h1>{% block header %}Welcome to LMS!!!{% endblock %}</h1>
+        <h1>{% block header %}
+            <h2 style="font-style:italic"><span style="color:#0033ff"><cite><strong>Welcome to LMS!!!</strong></cite></span></h2>
+            <hr />
+        {% endblock %}</h1>
     </div>
     {% include 'includes/messages.html' %}
         {% block content %}
